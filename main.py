@@ -78,7 +78,9 @@ def perform_menu_action(menu_option, user_name, user_id):
       confirmation_message(o, f"your current balance is: ${Decimal(b.check_balance())} {b.currency}")
 
     case "4": # Withrow money
-      pass
+      amount = Decimal(input("How much do you want to withrow?: "))
+      b.withrow_money(amount)
+      confirmation_message(o, f"your current balance is: ${Decimal(b.check_balance())} {b.currency}")
 
     case "5": # Check account status
       pass

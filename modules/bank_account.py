@@ -117,7 +117,12 @@ class Bank_Account:
     
     self.validate_account_status(statement)
 
-  # TODO: Withrow money
-  # def withrow_money(self) -> None:
-  #   Log("Withrow money", self.account_id, self.account_transactions_storage)
-  #   pass
+  # Withrow money at ATM
+  def withrow_money(self, amount) -> float:
+    Log("Withrow money", self.account_id, self.account_transactions_storage)
+    
+    def statement():
+      self.balance -= Decimal(amount)
+      return Decimal(self.balance)
+    
+    self.validate_account_status(statement)
