@@ -68,7 +68,13 @@ class Bank_Account:
   # Unlock/Lock savings account
   def lock_account(self) -> str:
     Log("Lock account", self.account_id, self.account_transactions_storage)
-    self.status = "locked"
+
+    if self.is_locked(): 
+      print(f"Your account is already {self.status.upper()}")
+    else:
+      self.status = "locked"
+      print(f"Your account was succesfully {self.status.upper()}")
+
     return self.status
   
   def unlock_account(self) -> str:
@@ -78,6 +84,7 @@ class Bank_Account:
       print(f"Your account is already {self.status.upper()}")
     else:
       self.status = "active"
+      print(f"Your account was succesfully changed to {self.status.upper()}")
 
     return self.status
 
@@ -86,6 +93,7 @@ class Bank_Account:
     Log("Check account status", self.account_id, self.account_transactions_storage)
     return self.status
   
+  # Check if account is already locked
   def is_locked(self) -> bool:
     if self.status != "active":
       return True

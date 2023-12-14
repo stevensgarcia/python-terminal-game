@@ -83,13 +83,13 @@ def perform_menu_action(menu_option, user_name, user_id):
       confirmation_message(o, f"your current balance is: ${Decimal(b.check_balance())} {b.currency}")
 
     case "5": # Check account status
-      confirmation_message(o, f"your account status is: {b.check_account_status()}")
+      confirmation_message(o, f"your account status is: {b.check_account_status().upper()}")
 
     case "6": # Lock account
-      pass
+      b.lock_account()
 
     case "7": # Unlock account
-      pass
+      b.unlock_account()
 
     case "8": # Print transactions logs
       pass
