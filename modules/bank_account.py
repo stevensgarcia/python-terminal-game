@@ -113,7 +113,7 @@ class Bank_Account:
 
     def statement():
       self.balance += Decimal(amount)
-      return self.balance
+      return Decimal(self.balance)
     
     self.validate_account_status(statement)
 

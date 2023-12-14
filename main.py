@@ -1,5 +1,6 @@
 from modules.owner import Owner
 from modules.bank_account import Bank_Account
+from decimal import Decimal
 
 b = bank_account = None
 o = owner = None
@@ -56,19 +57,25 @@ def user_action():
 
 def perform_menu_action(menu_option, user_name, user_id):
 
+  # Print a message confirmation the action was done
+  def confirmation_message(owner, message):
+    print(f"Dear {owner.name}, {message}")
+
   match menu_option:
 
     case "1": # Create savings account
       global o, b 
       o = Owner(user_name, user_id)
       b = Bank_Account(owner = o)
-      print(f"Dear {o.name}, your savings account has been created successfully!")
+      confirmation_message(o, "your savings account has been created successfully!")
 
     case "2": # Check balance
-      print(f"Dear {o.name}, your current balance is: ${b.check_balance()} {b.currency}")
-      
+      confirmation_message(o, f"your current balance is: ${Decimal(b.check_balance())} {b.currency}")
+
     case "3": # Deposit money
-      pass
+      amount = Decimal(input("How much do you want to deposit?: "))
+      b.deposit_money(amount)
+      confirmation_message(o, f"your current balance is: ${Decimal(b.check_balance())} {b.currency}")
 
     case "4": # Withrow money
       pass
