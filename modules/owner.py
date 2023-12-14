@@ -1,12 +1,12 @@
 class Owner:
 
-  def __init__(self, name, email) -> None:
+  def __init__(self, name, id) -> None:
     self.name = name
-    self.email = email
+    self.id = id
   
   def get_owner(self) -> dict:
     return {
       "name": self.name, 
-      "email": self.email
+      "id": self.id
     }
 
