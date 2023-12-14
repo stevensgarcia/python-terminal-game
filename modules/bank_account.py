@@ -8,7 +8,8 @@ class Bank_Account:
   venue = "Country Side Bank"
   id = 0
 
-  def __init__(self, 
+  def __init__(self,
+    owner,
     balance = 0.0, 
     status = "active", # active | locked | closed 
     account_profile = "bronce", # bronce | silver | gold  | platinum
@@ -19,6 +20,7 @@ class Bank_Account:
     self.account_id = Bank_Account.id
     
     # Create account meta-data
+    self.owner = owner
     self.account_transactions_storage = []
     self.balance = Decimal(balance)
     self.status = status
@@ -26,6 +28,9 @@ class Bank_Account:
     self.currency = currency
 
     Log("Create savings account", self.account_id, self.account_transactions_storage)
+
+  def __repr__(self) -> str:
+    return f"This account belongs to {self.owner.name} and has a balance of {self.balance} {self.currency}"
 
   #############################################################################
   # ACCOUNT HISTORY
@@ -50,6 +55,11 @@ class Bank_Account:
       return Decimal(self.balance)
     
     return self.validate_account_status(statement)
+  
+  # TODO: Export transaction logs to CSV
+  # def check_balance(self) -> None:
+  #   Log("Export Logs to CSV", self.account_id, self.account_transactions_storage)
+  #   pass
 
   #############################################################################
   # CHANGE ACCOUNT STATUS
@@ -106,11 +116,6 @@ class Bank_Account:
       return self.balance
     
     self.validate_account_status(statement)
-      
-  # TODO: Transfer money to another account
-  # def transfer_money(self) -> None:
-  #   Log("Transfer money", self.account_id, self.account_transactions_storage)
-  #   pass
 
   # TODO: Withrow money
   # def withrow_money(self) -> None:
