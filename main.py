@@ -92,7 +92,7 @@ def perform_menu_action(menu_option, user_name, user_id):
       b.unlock_account()
 
     case "8": # Print transactions logs
-      pass
+      print(b.get_transaction_logs())
 
     case "9": # Export transactions logs to CSV file
       pass
