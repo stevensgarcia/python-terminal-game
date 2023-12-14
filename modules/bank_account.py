@@ -2,6 +2,7 @@ from decimal import Decimal
 from modules.log import Log
 from modules.utils import datetime_encoder
 import json
+import csv
 
 class Bank_Account:
 
@@ -56,10 +57,23 @@ class Bank_Account:
     
     return self.validate_account_status(statement)
   
-  # TODO: Export transaction logs to CSV
-  # def check_balance(self) -> None:
-  #   Log("Export Logs to CSV", self.account_id, self.account_transactions_storage)
-  #   pass
+  # Export transaction logs to CSV file
+  def export_csv(self) -> None:
+    Log("Export Logs to CSV", self.account_id, self.account_transactions_storage)
+    
+    with open(f"{self.account_id}.csv", "w") as file:
+
+      fields = ['action', 'account_id', 'timestamp']
+      writer = csv.DictWriter(file, fieldnames=fields)
+
+      writer.writeheader()
+
+      for log in self.account_transactions_storage:
+        writer.writerow({
+          "action": log["action"],
+          "account_id": log["account_id"],
+          "timestamp": log["timestamp"]
+        })
 
   #############################################################################
   # CHANGE ACCOUNT STATUS

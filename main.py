@@ -95,7 +95,8 @@ def perform_menu_action(menu_option, user_name, user_id):
       print(b.get_transaction_logs())
 
     case "9": # Export transactions logs to CSV file
-      pass
+      b.export_csv()
+      confirmation_message(o, "your transactions log has been exported successfully!")
 
     case _:
       print("We're sorry. That option is not available. Please try again or hit '9' to close this program.")
